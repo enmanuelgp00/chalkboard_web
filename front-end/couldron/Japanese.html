@@ -1,0 +1,68 @@
+<!doctype html>
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0;}
+        html, body {
+            height: 100vh;
+        }
+        button {
+            font-size: large;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 2px;
+            min-height: 100px;
+            min-width: 100px;
+        }
+        #soup {
+            display: inline-block;
+            max-width: 1000px;
+        }
+        #wrapper {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+</head>    
+<body>
+    <div id="wrapper">
+        <div id="soup">
+        </div>
+    </div>
+</body>
+<script>
+    var soup = document.getElementById("soup")
+
+    function jp_word (word, translation) {
+         return {
+            word: word,
+            translation: translation,
+         }
+    }
+    dictionary = [
+         new jp_word("まっすぐ", "straight"),
+         new jp_word("こんど","next time"),
+         new jp_word("コーナー", "section"),
+         new jp_word("くつした", "socks"),    
+    ]
+    for (let jwd of dictionary) {
+
+        let btn = document.createElement("button");
+        btn.innerHTML = jwd.word;
+
+        btn.addEventListener("click", (e) => {
+            if (btn.innerHTML == jwd.word) {
+                btn.innerHTML = jwd.translation;
+            } else {
+                btn.innerHTML = jwd.word;
+            }
+            
+        });
+
+        soup.appendChild(btn);
+    }
+</script>

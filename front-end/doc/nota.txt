@@ -1,0 +1,2 @@
+
+para centrar un elemento con margin: auto; debe tener la propiedad display: block; para que domine todo el espacio horizontal

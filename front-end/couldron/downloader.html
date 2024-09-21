@@ -1,0 +1,34 @@
+<!doctype html>
+
+<head>
+</head>
+
+<body>
+    <input type="url" required>
+    <button>download</button>
+  <script>
+    const fileInput = document.getElementsByTagName("input")[0]
+    downloadBtn = document.getElementsByTagName("button")[0]
+
+    downloadBtn.addEventListener("click", e => {
+      e.preventDefault()
+      //console.log(fileInput.value)
+      fetchFile(fileInput.value)
+    })
+
+    function fetchFile(url) {
+      fetch(url).then(res => res.blob()).then(file => {
+        // Crear un enlace URL con el archivo blob
+        const url = URL.createObjectURL(file);
+        console.log(url);
+        // Utilizar el enlace URL en tu código
+        let aTag = document.createElement("a")
+        aTag.href = url
+        aTag.download = "filename"
+        document.body.appendChild(aTag)
+        aTag.click()
+        aTag.remove()
+      })
+    }
+  </script>
+</body>

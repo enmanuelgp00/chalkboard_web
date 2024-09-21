@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Player</title>
+    <meta charset="utf-8"/>
+    <meta name="description" content="Video player">
+    <meta name="keywords" content="html5, css3, javascript">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .margin_default {
+        margin: 7px auto;
+      } 
+      button {
+        -webkit-transition: -webkit-transform 0.2s ease-in-out 0s;
+      }     
+      button:hover {
+        -webkit-transform: scale(1.1);
+      }
+      video {
+        display: block;
+        max-width: 90vh;
+        max-height: 90vh;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div>
+      <video class="margin_default" controls autoplay></video>  
+      <div id="panel">
+        <button id="btn_prev">prev</button>
+        <button id="btn_next">next</button>      
+        <input class="margin_default" type="file" multiple></input>
+      </div>
+    </div>
+  </body>
+  <script>
+    // input.files[*] returns a video, which is used to create the URL
+
+    let input = document.getElementsByTagName('input')[0];
+    let player = document.getElementsByTagName('video')[0];
+    let btn_prev = document.getElementById('btn_prev');
+    let btn_next = document.getElementById('btn_next');
+    let panel = document.getElementById('panel');
+    panel.margin = player.margin;
+    console.log("player margin = " + player.style.margin)
+
+    // Configuring loop
+    let isRunning = false;
+    let pos = 0;
+    let loop;
+
+    let run = (check) => {
+      if (check==false) {
+      	loop = setInterval(autoScroll, 1000);
+      }
+    }
+    let setVideo = function(num) {
+      player.src = URL.createObjectURL(input.files[num]);
+    }
+    let autoScroll = function(){
+      if(player.ended){
+         scroll(1);
+      }
+    }
+    let scroll = function(num) {
+      if (pos + num > input.files.length - 1) {
+        pos = 0;
+        setVideo(pos);
+
+      } else if (pos + num < 0){
+        pos = input.files.length - 1;
+        setVideo(pos);
+
+      } else {
+        pos = pos + num;
+        setVideo(pos);
+      }
+    } 
+
+    input.addEventListener('change', (e) => {
+      setVideo(pos);      
+      run(isRunning);
+    });
+
+    btn_next.addEventListener('click', (e)=> {      
+      scroll(1)
+    });
+    btn_prev.addEventListener('click', (e)=> {      
+      scroll(-1)
+    });    
+  </script>
+</html>

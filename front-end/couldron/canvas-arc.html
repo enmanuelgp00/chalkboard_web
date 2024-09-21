@@ -1,0 +1,34 @@
+<style>
+  input, canvas {display: block; margin: 7px;}
+  
+</style>
+<canvas width="500" height="500" style="border: 1px solid;">
+</canvas>
+<input type="number">
+<input type="number">
+<script>
+  inputs = document.getElementsByTagName('input');
+  btn = document.getElementById('button');
+  canvas = document.getElementsByTagName('canvas')[0];
+  brush = canvas.getContext('2d');
+  brush.strokeStyle = "rgba(0, 0, 255, 1)";
+  
+  for (i = 0; i < 2; i++) {
+    inputs[i].addEventListener('click', (e)=>{
+      draw(inputs[0].value, inputs[1].value);
+    });
+  }
+  thread = setInterval(()=>{
+    draw(inputs[0].value, inputs[1].value);
+  }, 100);
+
+  function draw(num0, num1) {
+    brush.clearRect(0,0, 500, 500);
+    brush.beginPath();
+    brush.arc(250, 250, 100, radianesAGrados(num0), radianesAGrados(num1), true);
+    brush.stroke();
+  }
+  function radianesAGrados(radianes){
+    return Math.PI/180*radianes;
+  }
+</script>
