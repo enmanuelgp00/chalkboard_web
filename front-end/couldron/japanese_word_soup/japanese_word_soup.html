@@ -1,0 +1,105 @@
+<!doctype html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+        }
+
+        html,
+        body {
+            height: 100vh;
+        }
+
+        button {
+            font-size: large;
+            font-family: 'Courier New', Courier, monospaceん;
+            margin: 2px;
+            min-height: 100px;
+            min-width: 100px;
+        }
+
+        #soup {
+            display: flex;
+            /*flex-wrap  permite que los elementos hagan salto de línea cuando no caben en una sola fila.*/
+            flex-wrap: wrap;
+            justify-content: center;            
+            align-items:center;
+            max-width: 1000px;
+        }
+
+        #wrapper {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="soup">
+        </div>
+    </div>
+</body>
+<script>
+    var soup = document.getElementById("soup")
+    function kanji(kanji, hiragana, translation) {
+        return {
+            kanji: kanji,
+            hiragana: hiragana,
+            translation: translation,
+        }
+    }
+    function katakana(katakana, translation) {
+        return {
+            katakana: katakana,
+            translation:translation,
+        }
+    }
+    function jpWord(kanji, translation) {
+        return {
+            word: word,
+            translation: translation,
+        }
+    }
+    dictionary = [
+        new jpWord("まっすぐ", "straight"),
+        new jpWord("こんど", "next time"),
+        new jpWord("コーナー", "section"),
+        new jpWord("くつした", "socks"),
+        new jpWord("こんしゅうまつ", "this weekend"),
+        new jpWord("アクセサリー", "accessories"),
+        new jpWord("ひだり<br>左", "left"),
+        new jpWord("まがります", "turn (left, right)"),
+        new jpWord("マフラー","scarf"),
+        new jpWord("キラキラ", "sparkly"),
+        new jpWord("くもり"),
+        new jpWord("安い","やすい"),
+        new jpWord("ボロボロ"),
+        new jpWord("")
+        
+
+
+    ]
+    for (let jwd of dictionary) {
+
+        let btn = document.createElement("button");
+        btn.innerHTML = jwd.word;
+
+        btn.addEventListener("click", (e) => {
+            if (btn.innerHTML == jwd.word) {
+                btn.innerHTML = jwd.translation;
+            } else {
+                btn.innerHTML = jwd.word;
+            }
+
+        });
+
+        soup.appendChild(btn);
+    }
+</script>
