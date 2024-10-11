@@ -1,0 +1,17 @@
+[00:01:06] What is a web server?
+	Web servers store processes and deliver web pages to users.
+	Comunication between server and user is through HTTP
+	HTTP (Hypertext Transport Protocol)
+
+[00:03:07] What is a socket?
+	Its an end point at the network comunication system
+	Allows the data to be sent and recibe over the network
+	Enable the server to have many client connections simultaneously
+
+[00:04:32] What is an IP
+	Internet Protocol
+
+[00:06:14] What is TCP
+	
+
+[00:11:30] DNS
